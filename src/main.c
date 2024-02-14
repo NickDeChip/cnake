@@ -43,7 +43,7 @@ snake_t *initSnake() {
   snake->body[0].y = floorf(((float)GRID_HEIGHT / 2) - 1.0f);
   snake->length = 1;
   snake->movementTimer = 0.0f;
-  snake->movementRate = 0.6f;
+  snake->movementRate = 0.4f;
   snake->isAlive = true;
 
   return snake;
@@ -62,7 +62,7 @@ fruit_t *initFruit() {
 
   moveFruit(fruit);
   fruit->respawnTimer = 0.0f;
-  fruit->respawnRate = 0.0f;
+  fruit->respawnRate = 15.0f;
 
   return fruit;
 }
@@ -114,6 +114,12 @@ void update(state_t *state) {
 
   float delta = GetFrameTime();
   state->snake->movementTimer += delta;
+  state->fruit->respawnTimer += delta;
+
+  if (state->fruit->respawnTimer >= state->fruit->respawnRate) {
+    state->fruit->respawnTimer = 0.0f;
+    moveFruit(state->fruit);
+  }
 
   switch (GetKeyPressed()) {
   case KEY_W:
@@ -147,15 +153,15 @@ void update(state_t *state) {
   }
 
   if (state->snake->movementTimer >= state->snake->movementRate) {
-    state->snake->movementTimer = 0;
+    state->snake->movementTimer = 0.0f;
 
     if (state->fruit->pos.x == state->snake->body[0].x &&
         state->fruit->pos.y == state->snake->body[0].y) {
       moveFruit(state->fruit);
       state->snake->length += 1;
       state->score += 1;
-      if (state->snake->movementRate > 0.2f)
-        state->snake->movementRate -= 0.1f;
+      if (state->snake->movementRate > 0.05f)
+        state->snake->movementRate -= 0.05f;
     }
 
     for (int i = state->snake->length - 1; i > 0; i--) {
