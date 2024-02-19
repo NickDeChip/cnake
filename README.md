@@ -6,10 +6,10 @@ This is a game of snake made in C using Raylib
 
 | input | output |
 | ----- | ------ |
-| W | moves snake up |
-| S  | moves snake down |
-| D  | moves snake right |
-| A  | moves snake left |
+| W or UP | moves snake up |
+| S or DOWN | moves snake down |
+| D or RIGHT | moves snake right |
+| A or LEFT | moves snake left |
 
 ## Build
 

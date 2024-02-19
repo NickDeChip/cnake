@@ -122,6 +122,7 @@ void update(state_t *state) {
   }
 
   switch (GetKeyPressed()) {
+  case KEY_UP:
   case KEY_W:
     if (state->currentMovement->y == 1 && state->snake->length > 1) {
       break;
@@ -129,6 +130,7 @@ void update(state_t *state) {
     state->movementBuffer->x = 0;
     state->movementBuffer->y = -1;
     break;
+  case KEY_LEFT:
   case KEY_A:
     if (state->currentMovement->x == 1 && state->snake->length > 1) {
       break;
@@ -136,6 +138,7 @@ void update(state_t *state) {
     state->movementBuffer->x = -1;
     state->movementBuffer->y = 0;
     break;
+  case KEY_DOWN:
   case KEY_S:
     if (state->currentMovement->y == -1 && state->snake->length > 1) {
       break;
@@ -143,6 +146,7 @@ void update(state_t *state) {
     state->movementBuffer->x = 0;
     state->movementBuffer->y = 1;
     break;
+  case KEY_RIGHT:
   case KEY_D:
     if (state->currentMovement->x == -1 && state->snake->length > 1) {
       break;
